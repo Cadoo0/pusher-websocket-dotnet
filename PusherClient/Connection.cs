@@ -216,6 +216,10 @@ namespace PusherClient
                 case Constants.CONNECTION_ESTABLISHED:
                     ParseConnectionEstablished(messageData);
                     break;
+                
+                case Constants.PUSHER_PING:
+                    SendPong();
+                    break;
                     
                 case Constants.PUSHER_SIGNIN_SUCCESS:
                 case Constants.PUSHER_WATCHLIST_EVENT:
@@ -394,6 +398,12 @@ namespace PusherClient
             _websocket.Closed += WebsocketAutoReconnect;
             _websocket.Error += WebsocketError;
             _backOffMillis = 0;
+        }
+
+        private void SendPong()
+        {
+            SendAsync(DefaultSerializer.Default.Serialize(new PusherSystemEvent("pusher:pong", null)))
+                .ConfigureAwait(false);
         }
 
         private void WebsocketAutoReconnect(object sender, EventArgs e)

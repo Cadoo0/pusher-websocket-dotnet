@@ -18,6 +18,8 @@
         public const string PUSHER_SIGNIN = "pusher:signin";
         public const string PUSHER_SIGNIN_SUCCESS = "pusher:signin_success";
         public const string PUSHER_WATCHLIST_EVENT = "pusher_internal:watchlist_events";
+        
+        public const string PUSHER_PING = "pusher:ping";
 
         public const string USER_CHANNEL_PREFIX = "#server-to-user-";
         
